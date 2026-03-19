@@ -106,7 +106,7 @@ namespace PersonalFinanceTracker
 
                 else
                 {
-                    Console.WriteLine($"Record cannot doesn't exist!");
+                    Console.WriteLine($"Record not found!");
                 }
                     
             }
@@ -123,6 +123,7 @@ namespace PersonalFinanceTracker
                 {                
                     highest = t;   
                 }
+
             }
 
             return highest;

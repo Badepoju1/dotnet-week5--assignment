@@ -41,7 +41,7 @@ namespace PersonalFinanceTracker
 
             static int IntNum(int opt) // a class method to validate client input
             {
-                while (opt <= 0 || opt >= 10) // continue to loop as long as the the input for opt is true here
+                while (opt < 1 || opt >= 10) // continue to loop as long as the the input for opt is true here
                 {   
                     
                     Console.WriteLine("Invalid input, option should be 1 - 9");
@@ -52,18 +52,30 @@ namespace PersonalFinanceTracker
                 return opt; // return the int value of opt
             }
 
+            static void pause()
+            {
+                Console.WriteLine("\nPress Enter to return to the menu...");
+                Console.ReadLine();
+                Console.Clear(); // Clear screen before redisplaying menu
+            }
             
             bool running = true; // bool initialization and assignment fot the while loop
             while (running)
-            {
+            {   
                 try
                 {   
-                    Console.WriteLine("\n=== Personal Finance Tracker ===");
-                    Console.WriteLine($"Welcome, {tracker.UserName}!");
-                    Console.WriteLine($"Current Balance: ${tracker.CurrentBalance}");
-                    Console.WriteLine("");
+                    Console.WriteLine("====================================");
+                    Console.WriteLine("     PERSONAL FINANCE TRACKER       ");
+                    Console.WriteLine("====================================");
 
-                    Console.WriteLine("\n1. Add Income");
+                    Console.WriteLine($"Welcome, {tracker.UserName}!");
+                    Console.WriteLine($"Current Balance: ${tracker.CurrentBalance:F2}");
+
+                    Console.WriteLine("\n------------------------------------");
+                    Console.WriteLine("               MENU                 ");
+                    Console.WriteLine("------------------------------------");
+
+                    Console.WriteLine("1. Add Income");
                     Console.WriteLine("2. Add Expense");
                     Console.WriteLine("3. View All Transactions");
                     Console.WriteLine("4. View Income Only");
@@ -73,24 +85,38 @@ namespace PersonalFinanceTracker
                     Console.WriteLine("8. Display Monthly Summary");
                     Console.WriteLine("9. Exit");
 
-                    Console.Write("\nSelect an option: ");
+                    Console.WriteLine("------------------------------------");
+                    Console.Write("Select an option (1-9): ");
                     int option = IntNum(Convert.ToInt32(Console.ReadLine())); // Read user option and convert to integer
                     
                     // Exit option
                     if (option == 9)
-                    {
-                        Console.WriteLine("Program is successfully terminated. Thank you."); // Friendly termination message
-                        break;              // Exit the while loop
+                    {   
+                        Console.Clear();
+                        Console.Write("Are you sure you want to exit? (y/n): ");
+                        string? response = Console.ReadLine()?.Trim().ToLower();
+                        if (response == "y" || response == "yes")
+                        {
+                            Console.WriteLine("\nThank you for using the Personal Finance Tracker!");
+                            Console.WriteLine("Save smart. Spend wisely. Goodbye!\n"); // Friendly termination message
+                            break;              // Exit the while loop
+                        }
+                        else
+                        {
+                            Console.WriteLine("Exit cancelled. Returning to menu...");
+                        }
+                        
                     }
+                    
+                    Console.Clear();
 
                     switch (option)
                     {
                         case 1: // case one and case 2 uses the same code but I use the shorthand for loop to differentiate the action upon the option selected
                         case 2:
-
+                            
                             Console.Write("Enter Transaction Description: ");
                             string desc = CheckField(Console.ReadLine()); // calling a defined method
-                            
 
                             Console.Write("Enter Tranction Amount: ");
                             decimal amount = DecimalNum(Convert.ToDecimal(Console.ReadLine())); // calling a defined method
@@ -126,15 +152,21 @@ namespace PersonalFinanceTracker
                             break;
 
                         case 7:
+                            Console.WriteLine($"Highest Expense Report");
                             var highest = tracker.GetHighestExpense(); // calling a defined method
                             if (highest != null)
-                                Console.WriteLine($"Highest Expense: {highest.Category} - ${highest.Amount}");
+                            {
+                                Console.WriteLine($"Highest Expense: {highest.Description} - ${highest.Amount}");
+                            }  
+                            else
+                            {
+                                Console.WriteLine($"Record not found!");
+                            }
                             break;
 
                         case 8:
                             tracker.DisplayMonthlySummary();
                             break;
-
                     }
                 }
                 catch (System.Exception)
@@ -142,6 +174,8 @@ namespace PersonalFinanceTracker
                     
                     Console.WriteLine("Invalid input, please enter appropriate value");
                 }
+
+                pause();
                 
             }
         }
