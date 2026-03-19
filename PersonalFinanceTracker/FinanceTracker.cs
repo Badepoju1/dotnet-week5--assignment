@@ -28,7 +28,7 @@ namespace PersonalFinanceTracker
             get
             {
                 decimal total = 0;
-                foreach (Transaction t in transactions)
+                foreach (Transaction t in transactions) // to loop through each item in the object list
                 {
                     if (t.Type == "Expense")
                         total += t.Amount;
@@ -46,7 +46,7 @@ namespace PersonalFinanceTracker
         // Add transaction
         public void AddTransaction(Transaction transaction) // a public method to add new object
         {
-            transactions.Add(transaction);
+            transactions.Add(transaction); // use the add function
         }
 
         // Display all transactions

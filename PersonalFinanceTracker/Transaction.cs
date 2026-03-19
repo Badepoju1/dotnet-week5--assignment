@@ -6,10 +6,10 @@ namespace PersonalFinanceTracker
         public int TransactionID { get; } // automated property with readonly access
 
         // Auto-implemented properties
-        public string Description { get; set; } // automated property with readonly access
-        public DateTime Date { get; set; }
+        public string Description { get; set; } // automated property with read/write access
+        public DateTime Date { get; set; } // automated property with read/write access
 
-        public string Category { get; set; }
+        public string Category { get; set; } // automated property with read/write access
 
         private decimal _amount; // pricate field to be use in another property within the same class
         public decimal Amount // a defined property with validation

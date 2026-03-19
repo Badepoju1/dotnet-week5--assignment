@@ -18,7 +18,7 @@ namespace PersonalFinanceTracker
 
             static string CheckField(string? field) // a class method to validate client input
             {
-                while (string.IsNullOrEmpty(field))
+                while (string.IsNullOrEmpty(field)) // continue to loop as long as the field is empty or null
                 {
                     Console.WriteLine("field cannot be empty or null");
                     Console.Write("Enter Appropriate Value: ");
@@ -30,18 +30,18 @@ namespace PersonalFinanceTracker
 
             static decimal DecimalNum(decimal input) // a class method to validate client input
             {
-                while (input <= 0)
+                while (input <= 0) // continue to loop as long as the input is negative
                 {
                     Console.WriteLine("Value cannot be negative or zero");
                     Console.Write("Enter Tranction Amount: ");
                     input = Convert.ToDecimal(Console.ReadLine()); // ask again
                 }
-                return input;
+                return input; //return the decimal value of input
             }
 
             static int IntNum(int opt) // a class method to validate client input
             {
-                while (opt <= 0 || opt >= 10)
+                while (opt <= 0 || opt >= 10) // continue to loop as long as the the input for opt is true here
                 {   
                     
                     Console.WriteLine("Invalid input, option should be 1 - 9");
@@ -49,11 +49,11 @@ namespace PersonalFinanceTracker
                     opt = Convert.ToInt32(Console.ReadLine()); // ask again
                     
                 }
-                return opt;
+                return opt; // return the int value of opt
             }
 
             
-            bool running = true;
+            bool running = true; // bool initialization and assignment fot the while loop
             while (running)
             {
                 try
