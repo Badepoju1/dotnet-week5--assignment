@@ -71,7 +71,7 @@ namespace PersonalFinanceTracker
             {
                 if (t.Type == "Income")
                     {
-                        Console.WriteLine($"{t.TransactionID} | {t.Description} | ${t.Amount}");
+                        Console.WriteLine($"{   t.TransactionID}    | {t.Description} | ${t.Amount}");
                     }   
             }
         }
@@ -85,7 +85,7 @@ namespace PersonalFinanceTracker
             {
                 if (t.Type == "Expense")
                 {
-                    Console.WriteLine($"{t.TransactionID} | {t.Description} | ${t.Amount}");
+                    Console.WriteLine($"{   t.TransactionID}      | {t.Description} | ${t.Amount}");
                 }
                     
             }
@@ -101,12 +101,7 @@ namespace PersonalFinanceTracker
             {
                 if (t.Category == category) // this help to confirm the search after looping through the category list
                 {
-                    Console.WriteLine($"{t.TransactionID} | {t.Description} | {t.Type} | ${t.Amount}");
-                }
-
-                else
-                {
-                    Console.WriteLine($"Record not found!");
+                    Console.WriteLine($"   {t.TransactionID}     | {t.Description} | {t.Type} | ${t.Amount}");
                 }
                     
             }
