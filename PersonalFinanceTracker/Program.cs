@@ -57,7 +57,7 @@ namespace PersonalFinanceTracker
             while (running)
             {
                 try
-                {   Console.Clear();
+                {   
                     Console.WriteLine("\n=== Personal Finance Tracker ===");
                     Console.WriteLine($"Welcome, {tracker.UserName}!");
                     Console.WriteLine($"Current Balance: ${tracker.CurrentBalance}");
